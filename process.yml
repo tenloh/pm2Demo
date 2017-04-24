@@ -1,14 +1,14 @@
 apps:
-  - script   : app.js
+  - script   : port3000.js
     instances: 2
     exec_mode: cluster
-  - script : app2.js
+  - script : port3001.js
     watch  : true
     env: 
       NODE_ENV: development
     env_production:
       NODE_ENV: production
-  - script : app3.js
+  - script : command.js
     watch: true
     env: 
       NODE_ENV: development
