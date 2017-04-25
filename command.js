@@ -1,10 +1,14 @@
-var pmx = require('pmx');
-var probe = pmx.probe();
+const pmx = require('pmx');
+const probe = pmx.probe();
 
 
 //pmx action - commands from the CLI
-pmx.action('saySomething', (reply) => {
-	reply( 'Hello' );
+pmx.action('checkHealth', (reply) => {
+	reply( 'Good' );
+});
+
+pmx.action('getUsers', (reply) => {
+	reply( 'Number of users is : ' + Object.keys(users).length);
 });
 
 
