@@ -30,13 +30,13 @@ var userTimeout = setInterval( () => {
 
 // Histogram Example
 var histogram = probe.histogram({
-  name        : 'latency',
+  name        : 'errorPixels',
   measurement : 'mean'
 });
 
-var latency = 0;
+var errorPixels = 0;
 
 setInterval(function() {
-  latency = Math.round(Math.random() * 100);
-  histogram.update(latency);
+  errorPixels = Math.round(Math.random() * 100);
+  histogram.update(errorPixels);
 }, 100);
