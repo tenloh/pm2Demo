@@ -1,42 +1,80 @@
 const pmx = require('pmx');
 const probe = pmx.probe();
 
-
+let health = 'Good'
 //pmx action - commands from the CLI
 pmx.action('checkHealth', (reply) => {
-	reply( 'Good' );
+	reply( `Health is ${health}` );
 });
 
-pmx.action('getUsers', (reply) => {
-	reply( 'Number of users is : ' + Object.keys(users).length);
+pmx.action('getPixelsSent', (reply) => {
+	reply( 'Number of pixels sent is : ' + Object.keys(pixels).length);
+});
+
+pmx.action('setHealth', (param, reply) => {
+	console.log( `Setting health is ${param}`);
+	health = param;
+	reply( `Health is ${health}` );
 });
 
 
 //Setting up metrics for pm2 monit
-let users = {};
+let pixels = {};
 
 var metric = probe.metric({
   name    : 'Realtime user',
   value   : function() {
-		console.log('Number of users', Object.keys(users).length);
-    return Object.keys(users).length;
+    return Object.keys(pixels).length;
+  },
+  alert : {
+    mode: 'threshold',
+    value: 95,
+    msg: 'Detected over 95% Error Rate',
+    func: function() {
+      console.error('Detected over 95% Error Rate');
+    },
+    cmp : "<"
   }
 });
 
 var userTimeout = setInterval( () => {
-	users[Object.keys(users).length] = 'New User';
+	pixels[Object.keys(pixels).length] = {
+		e: '24',
+		k: 'Cannot call function destroy of null'
+	};
 }, 5000);
 
 
 // Histogram Example
 var histogram = probe.histogram({
-  name        : 'errorPixels',
-  measurement : 'mean'
+  name        : 'Max errors per second',
+  measurement : 'max'
 });
 
-var errorPixels = 0;
+var errors = 0;
 
 setInterval(function() {
-  errorPixels = Math.round(Math.random() * 100);
-  histogram.update(errorPixels);
-}, 100);
+  errors = Math.round(Math.random() * 100);
+  histogram.update(errors);
+}, 1000);
+
+
+if (!cpu_usage) {
+	var cpu_usage = 0;
+}
+// Probe Metric
+var metric = probe.metric({
+  name  : 'CPU usage',
+  value : function() {
+    return cpu_usage;
+  },
+  alert : {
+    mode  : 'threshold',
+    value : 95,
+    msg   : 'Detected over 95% CPU usage', // optional
+    func  : function() { //optional
+      console.error('Detected over 95% CPU usage');
+    },
+    cmp   : "<" // optional
+  }
+});

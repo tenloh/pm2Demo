@@ -1,16 +1,12 @@
 apps:
-  - script   : port3000.js
+  - script   : loadBalanced.js
     instances: 2
     exec_mode: cluster
-  - script : port3001.js
+  - script : simpleServer.js
     watch  : true
     env: 
       NODE_ENV: development
-    env_production:
-      NODE_ENV: production
   - script : command.js
     watch: true
     env: 
       NODE_ENV: development
-    env_production:
-      NODE_ENV: production
