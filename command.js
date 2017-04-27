@@ -22,7 +22,7 @@ pmx.action('setHealth', (param, reply) => {
 let pixels = {};
 
 var metric = probe.metric({
-  name    : 'Realtime user',
+  name    : 'Number of Pixels Sent',
   value   : function() {
     return Object.keys(pixels).length;
   },
@@ -37,12 +37,12 @@ var metric = probe.metric({
   }
 });
 
-var userTimeout = setInterval( () => {
+var pixelTimeout = setInterval( () => {
 	pixels[Object.keys(pixels).length] = {
 		e: '24',
 		k: 'Cannot call function destroy of null'
 	};
-}, 5000);
+}, 1000);
 
 
 // Histogram Example
@@ -62,6 +62,7 @@ setInterval(function() {
 if (!cpu_usage) {
 	var cpu_usage = 0;
 }
+
 // Probe Metric
 var metric = probe.metric({
   name  : 'CPU usage',

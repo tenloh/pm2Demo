@@ -1,0 +1,20 @@
+{
+  "name": "Moat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./tests",
+    "start": "nodemon -e js,html,css server/app.js "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "express": "^4.14.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "serve-favicon": "^2.3.2"
+  }
+}

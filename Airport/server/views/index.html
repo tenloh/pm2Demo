@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Calculair</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../browser/css/stylesheet.css">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <span id="title">Calculair</span>
+        <div id="form">
+            <form>
+                    <div class="form-group">
+                        <span class="input-group-addon">Origin</span>
+                        <input type="text" class="form-control" id="origin-search" list="origin" placeholder="Select an Airport" autocomplete="off" />
+                        <datalist id="origin">
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <span class="input-group-addon">Destination</span>
+                        <input type="text" class="form-control" id="destination-search" list="destination" placeholder="Select an Airport" autocomplete="off" />
+                        <datalist id="destination">
+                        </datalist>
+                    </div>
+                    <input type="button" class="btn btn-default" onclick="calcDistance()" value="Calculate Distance"/>
+            
+                    <span class="badge">Distance in Nautical Miles</span>
+                    <span id="distance"></span>
+            </form>
+        </div>
+    </div>
+
+<!-- Use any element to open the sidenav -->
+    <div id="main">
+        <div id="map"></div>
+    </div>
+
+
+    <script src="../../browser/js/initialize.js" defer></script>
+    <script src="../../browser/js/distance.js" defer></script>
+    <script src="../../browser/js/map.js" defer></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4-Phs-WIF4FatMUjwOB7rKf7nY-3VvRQ&callback=initMap"></script>
+</body>
+
+</html>
