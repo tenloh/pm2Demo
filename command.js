@@ -26,15 +26,6 @@ var metric = probe.metric({
   value   : function() {
     return Object.keys(pixels).length;
   },
-  alert : {
-    mode: 'threshold',
-    value: 95,
-    msg: 'Detected over 95% Error Rate',
-    func: function() {
-      console.error('Detected over 95% Error Rate');
-    },
-    cmp : "<"
-  }
 });
 
 var pixelTimeout = setInterval( () => {
@@ -47,8 +38,8 @@ var pixelTimeout = setInterval( () => {
 
 // Histogram Example
 var histogram = probe.histogram({
-  name        : 'Max errors per second',
-  measurement : 'max'
+  name        : 'Average errors per second',
+  measurement : 'mean'
 });
 
 var errors = 0;
